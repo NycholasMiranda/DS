@@ -1,0 +1,56 @@
+<!doctype tml> 
+	<html lang="pt-BR"> 
+	<head> 
+	       <meta charset="UTF-8"/> 
+	        <!-- esse charchet pagina usa todo tipo de caracter em qualquer idioma mundial 
+	        Modelo de charset exclusivo para o Brasil e linguas latinas = ISO8859-1 
+	        --> 
+
+	<title>  Cadastro de Cliente </title>
+		<font color="ivory"><body background="https://image.freepik.com/fotos-gratis/design-de-plano-de-fundo-texturizado-simples-preto_53876-63595.jpg"><center><h2>Insira seus dados nas lacunas abaixo</h2></center>
+		       <font color="ivory"><center>Atendemos somente a região Sudeste</center></body>
+</br>
+</br>
+</br>
+			
+<form>
+	<center><label for="nome"> Nome:<br></label>
+<input type="text" name ="nome"><br><br>
+
+	Sobrenome:<br>
+	<input type="text" name="Sobrenome"><br><br>
+	
+	<label for="Telefone"> Telefone:</label><br>
+     <input type="text" name ="Telefone" placeholder="DDD" size="1">
+	 <label for="Telefone">-</label>
+     <input type="text" name ="Telefone"><br><br>
+	
+	Estado Civil:<br>
+	<input type="radio" name="Estado" value="Solteiro" checked> Solteiro<br>
+	<input type="radio" name="Estado" value="Casado" checked>  Casado<br>
+	<input type="radio" name="Estado" value="Noivo" checked> Noivo<br>
+	<input type="radio" name="Estado" value="Viúvo" checked> Viúvo<br>
+	<input type="radio" name="Estado" value="Outro" checked> Outro<br><br>
+	
+	Estado em que você mora:<br>
+	<select name = "estado" id ="estado">
+		<option value = "sp"> São Paulo </option>
+		<option value = "rj"> Rio de Janeiro </option>
+		<option value = "es"> Espirito Santo </option>
+		<option value = "mg"> Minas Gerais </option>
+		</select><br><br>
+	
+
+	 Como você pode vir para a nossa empresa?<br>
+	<input type="checkbox" name ="transporte" id ="transporte" value ="logica"> Carro<br>
+	<input type="checkbox" name ="transporte" id ="transporte" value ="Analise"> Ônibus<br>
+	<input type="checkbox" name ="transporte" id ="transporte" value ="imc"> Metrô/Trem<br>
+	<input type="checkbox" name ="transporte" id ="tarnsporte" value ="osa"> Táxi/Uber<br>
+	<input type="checkbox" name ="transporte" id ="transporte" value ="tpi"> A pé<br>
+	<input type="checkbox" name ="transporte" id ="transporte" value ="tpi"> Avião<br>
+	<br>
+	<input type="submit" value="Enviar"
+	</center>
+	</form>
+	</html>
+
