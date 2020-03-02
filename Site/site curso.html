@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Esse código é só para tirar as margens */
+body,html{margin:2;padding:0;}
+
+.wrapper {
+  /* O elemento precisa ter uma altura definida para o efeito
+  funcionar.
+     100vh significa 100% da altura da view.
+  */
+  height: 100vh;
+  
+  /* O tamanho das imagens irá criar uma barra de rolagem 
+  horizontal. Iremos desativar isso */
+
+  overflow-x: hidden;
+  
+
+  /* A propriedade perspective indica a "distância" entre o 
+  usuário e o plano Z.
+  Quanto maior o valor, mais perto o elemento estará do usuário.
+  Se for um valor negativo,
+  mais distante esse elemento estará.
+  */
+  perspective: 2px;
+  
+  /* O transform-style indica se os elementos filhos devem ser 
+  transformados em um plano 2D ou 3D.
+  O valor preserve-3d indica que os elementos devem seguir o 
+  espaço 3D indicado.
+  */
+  transform-style: preserve-3d;
+}
+
+
+
+.section {
+  /* Indicamos "relative" para depois podermos
+  posicionar os elementos filhos com "absolute" */
+  position: relative;
+ 
+  /* Indicamos uma altura para a nossa seção. O valor não 
+  importa muito.
+  Para garantir um bom efeito, coloquei também uma altura 
+  mínima de 700px;
+  */
+  height: 100vh;
+  min-height: 700px;
+  
+  /* Para manter a transformação em espaço 3D, indicamos o mesmo 
+  valor do elemento pai (preserve-3d).
+  Para não precisar repetir o valor "preserve-3d", você pode usar 
+  o valor "inherit", que fará
+  com que ele pegue o valor do elemento pai.
+  */
+  transform-style: inherit; 
+}
+
+.section::before {
+  /* Aqui nós iremos configurar a imagem que irá aparecer no fundo
+  da seção.
+  Como vimos, o Parallax precisa de elementos diferentes, então 
+  não daria certo se colocássemos o fundo diretamente na 
+  <section>. Então criaremos um pseudo-elemento para isso.
+  */
+  
+  /* Isso servirá para que o pseudo-elemento possua as mesmas
+  dimensões do elemento <section> */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  /* O z-index negativo irá garantir que a imagem não fique por 
+  cima de outros elementos */ 
+  z-index: -1;
+  
+  /* Aqui estamos fazendo com que a imagem de fundo cubra todo o
+  elemento */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+  /* Aqui está a brincadeira. Lembra que o nosso "wrapper" está
+  mais próximo do usuário?
+  Aqui nós faremos com que o nosso pseudo-elemento, que está com
+  a imagem de fundo, fique mais longe do usuário. Para isso, 
+  basta passar um valor negativo para "translateZ()".
+  
+  Como a imagem irá para longe do usuário, ela parecerá menor. 
+  Então usamos o "scale()" para aumentar o tamanho da imagem.
+  
+  Como o elemento estará mais longe do usuário, ele irá se mover
+  mais lentamente do que os elementos mais próximos conforme 
+  a gente role a página.
+  */
+  transform: translateZ(-1px) scale(1.5);
+}
+
+.text{
+  /* Essa classe, como dito antes, é só para o nosso conteúdo.
+  Sinta-se livre para criar o que quiser.
+  */
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  padding: 20px 0;
+
+  color: white;
+  text-shadow: 0 0 5px #000;
+  font-size: 150%;
+  text-align: center;
+}
+
+/* Em nosso pseudo-elemento, configuramos a imagem de fundo,
+mas não indicamos qual será a imagem.
+  Isso nos permite poder criar outras classes para indicar 
+  uma imagem diferente para cada <section>.
+*/
+.bg1::before {
+  background-image: url('IMG_6031.jpg');
+}
+
+p.l{
+  color: white;
+  font-family: calibri;
+}
+ div.p{
+
+  margin: 10px;
+  width: 100%;
+  height: 200px;
+  font-family: calibri;
+  background-color: #31375B;
+ }
+  div.polaroid {
+  margin: 10px;
+  width: 30%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+div.container {
+  width: 7%
+  margin: 1px;
+  text-align: center;
+  padding: 10px 10px;
+}
+
+body {
+  font-size: 150%;
+}
+
+ul {
+   border-radius: 12px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #dfdfdf;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color:#AF1117;
+}
+
+.active {
+  background-color: #31375B;
+}
+</style>
+</head>
+<body>
+	<ul>
+  <li><a class="active" href="Site curso.html">Sobre</a></li>
+  <li><a href="Aulas.html">Aulas</a></li>
+  <li><a href="https://www.google.com/maps/dir/-23.5839488,-46.5453056/etec+professor+camargo+aranha/@-23.5685088,-46.6074963,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x94ce5935e6d7f161:0xe1e8049a33dc964b!2m2!1d-46.5979424!2d-23.5532296">Localização</a></li>
+</ul>
+
+<main class="wrapper">
+  <section class="section bg1">
+    <h1 class="text" style="font-family: arial" >Bem-Vindo à <br> ETEC Profesor Camargo Aranha</h1>
+
+  </section>
+
+</main>
+
+
+ <h2 style="font-family: calibri"><center>NOVO-TEC Desenvolvimento de sistemas</center></h2>
+    
+  <br>
+  <br>
+
+
+
+
+
+
+
+<h2 style="font-family: calibri">  &nbsp; Sobre o curso: </h2>
+<p style="font-family: calibri" class="z"> Oferecido pela ETEC 
+professor Camargo Aranha, O tecnólogo com esta  formação 
+desenvolve, analisa, projeta, implementa e atualiza 
+sistemas de informação. Tem noções de gerenciamento, mas 
+sua especialidade  é a criação de sistemas informatizados:
+programação de computadores e  desenvolvimento de softwares
+para ampliar a capacidade dos recursos do equipamento.</p>
+
+<br>
+<br>
+<h2  style="font-family: calibri">Processo seletivo:</h2>
+<p style="font-family: calibri">Para ingressar em qualquer ETEC, o candidato deve estar passar por um processo seletivo denominado "vestibulinho". As ETEC's possuem o "Sistema de Pontuação Acrescida", onde os candidatos que se declararem afro–descendentes recebem 3% de bônus sobre a nota, e os ex alunos de escolas públicas 10% que são cumulativos. É importante lembrar que os Alunos do "sistema S" de ensino não fazem parte deste grupo.</p>
+<br>
+<br>
+
+<h2 style="font-family: calibri">Habilitação Técnica Profissional em Desenvolvimento de Sistemas (Curso técnico)</h2>
+<p style="font-family: calibri">O curso técnico modular do Programa Novotec funcionarão em um périodo noturno com componentes da base nacional comum, sob responsabilidade das Escolas Estaduais da Secretaria da Educação do Estado de São
+Paulo e com componentes da formação profissional de técnico, sob a responsabilidade das Etecs,
+do Centro Paula Souza.
+
+<h2 style="font-family: calibri">Ensino Médio com Habilitação Técnica Profissional em Desenvolvimento de Sistemas - NOVO-TEC:</h2>
+
+<p style="font-family: calibri">O Ensino Médio com Habilitação Técnica Profissional
+do Programa Novotec Integrado funcionarão em ½ período com componentes da base nacional
+comum, sob responsabilidade das Escolas Estaduais da Secretaria da Educação do Estado de São
+Paulo e com componentes da formação profissional de técnico, sob a responsabilidade das Etecs,
+do Centro Paula Souza juntamente com o técnico: O TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS é o profissional que analisa e projeta sistemas. Constrói, documenta, realiza testes e mantém sistemas de informação. Utiliza ambientes de desenvolvimento e linguagens de programação específica. Modela, implementa e mantém bancos de dados.</p>
+
+<p style="font-family: calibri"><h2 style="font-family: calibri">Eixo Tecnológico:</h2>Informação e Comunicação</p>
+
+<center><table id="customers">
+  <tr>
+    <th style="background-color: #31375B">Ensino</th>
+    <th style="background-color: #31375B">Horário</th>
+   
+  </tr>
+  <tr>
+    <td>Ensino técnico integrado ao médio (Manhã)</td>
+    <td>07:00 às 12:15</td>
+  </tr>
+  <tr>
+    <td>Ensino técnico integrado ao médio(Tarde)</td>
+    <td>à combinar</td>
+
+  </tr>
+  <tr>
+    <td>ensino técnico(noturno)</td>
+    <td>à combinar</td>
+   </tr>
+</table></center>
+<div class="p">
+  <br>
+  
+
+   <p align="center" style="font-family:Comic Sans MS; color: white"> ETEC Professor Camargo Aranha</p>
+
+    <center><a href="https://www.facebook.com/123Camargo/?rf=707743636088338"><img style="width:5%" src="plano de fundo.png"></a>
+    
+
+    
+      <a href="https://www.instagram.com/eteccamargoaranha/"><img style="width:5%" src="download (5).jfif"></a></center>
+    
+
+</div>
+
+
+
+</body>
+</html>
